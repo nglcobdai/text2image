@@ -16,7 +16,7 @@ def main():
     filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
     path = output_dir / filename
 
-    generator = TextToImageModel()
+    generator = TextToImageModel(use_gpu=settings.USE_GPU)
     generator(order.prompt(), is_save=True, path=path)
 
 

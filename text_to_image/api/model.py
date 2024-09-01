@@ -12,6 +12,7 @@ class TextToImageModel:
         base_model_id="stabilityai/stable-diffusion-xl-base-1.0",
         repo_name="SYZhang0805/DisBack",
         ckpt_name="SDXL_DisBack.bin",
+        use_gpu=False,
     ):
         """Initialize TextToImageModel
 
@@ -23,6 +24,7 @@ class TextToImageModel:
         base_model_id = base_model_id
         repo_name = repo_name
         ckpt_name = ckpt_name
+        device = "cuda" if use_gpu else "cpu"
 
         # Proper usage of from_config
         unet_config = UNet2DConditionModel.load_config(base_model_id, subfolder="unet")
@@ -32,7 +34,7 @@ class TextToImageModel:
         unet.load_state_dict(
             torch.load(
                 hf_hub_download(repo_name, ckpt_name),
-                map_location="cuda",
+                map_location=device,
                 weights_only=True,
             )
         )
@@ -43,7 +45,7 @@ class TextToImageModel:
             torch_dtype=torch.float16,
             use_safetensors=True,
             variant="fp16",
-        ).to("cuda")
+        ).to(device)
 
         # Initialize LCMScheduler properly without unnecessary parameters
         self.pipe.scheduler = LCMScheduler.from_config(self.pipe.scheduler.config)
@@ -62,7 +64,7 @@ class TextToImageModel:
                 }
 
         Returns:
-            torch.Tensor: Image tensor
+            PIL.Image.Image: Image object
         """
         logger.info(f"Generating image from prompt: {prompt}")
         image = self.generate(prompt)
@@ -70,7 +72,7 @@ class TextToImageModel:
 
         if is_save:
             try:
-                path = kwargs.get("path", self.default_path)
+                path = kwargs.get("path")
             except AttributeError:
                 return logger.error("Parameter 'path' is required for saving image")
             self.save(image, path)
@@ -84,7 +86,7 @@ class TextToImageModel:
             prompt (str): Text prompt
 
         Returns:
-            torch.Tensor: Image tensor
+            PIL.Image.Image: Image object
         """
         image = self.pipe(
             prompt=prompt,
@@ -100,12 +102,12 @@ class TextToImageModel:
         """Convert image tensor to numpy array
 
         Args:
-            image (torch.Tensor): Image tensor
+            image (PIL.Image.Image): Image object
 
         Returns:
             np.ndarray: Image numpy array
         """
-        return image.cpu().numpy().transpose(1, 2, 0)
+        return image.numpy()
 
     def save(self, image, path):
         """Save image to disk

@@ -12,6 +12,8 @@ class Settings(BaseSettings):
 
     LOGGING_LEVEL: str
 
+    USE_GPU: bool
+
     DATADRIVE: str
 
     class Config:
