@@ -28,7 +28,7 @@ class TextToImageModel:
 
         # Proper usage of from_config
         unet_config = UNet2DConditionModel.load_config(base_model_id, subfolder="unet")
-        unet = UNet2DConditionModel.from_config(unet_config).to("cuda", torch.float16)
+        unet = UNet2DConditionModel.from_config(unet_config).to(device, torch.float16)
 
         # Use weights_only=True to avoid security issues
         unet.load_state_dict(
