@@ -1,13 +1,24 @@
 version: "3.3"
 services:
-  project:
+  text-to-image:
     build:
       context: .
       dockerfile: ./Dockerfile
     volumes:
       - .:/root/workspace
+      - /datadrive/hdd3/text-to-image:/datadrive
     env_file:
       - .env
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    runtime: nvidia
     tty: true # retain container up
     command: /bin/bash
     shm_size: ${DOCKER_SHM_SIZE}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
