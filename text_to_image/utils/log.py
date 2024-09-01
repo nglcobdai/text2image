@@ -7,7 +7,7 @@ import pytz
 
 
 class Logger:
-    def __init__(self, name):
+    def __init__(self, name=""):
         self.logger = getLogger(name)
 
         log_level = os.getenv("LOGGING_LEVEL", "DEBUG").upper()
@@ -33,3 +33,6 @@ class Logger:
 
         # ロガーにコンソールハンドラを追加
         self.logger.addHandler(console_handler)
+
+
+logger = Logger("TextToImage").logger
