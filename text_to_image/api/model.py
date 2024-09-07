@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 from diffusers import DiffusionPipeline, LCMScheduler, UNet2DConditionModel
 from huggingface_hub import hf_hub_download
@@ -107,7 +108,7 @@ class TextToImageModel:
         Returns:
             np.ndarray: Image numpy array
         """
-        return image.numpy()
+        return np.array(image)
 
     def save(self, image, path):
         """Save image to disk
