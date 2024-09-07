@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import yaml
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 from text_to_image.utils.log import logger
@@ -16,9 +17,7 @@ class Settings(BaseSettings):
 
     DATADRIVE: str
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+    model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     def __init__(self, **data):
         super().__init__(**data)
