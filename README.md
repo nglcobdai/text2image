@@ -47,16 +47,11 @@ $ cp .env.example .env.dev
 ### 3. Docker Build & Run
 
 ```sh
-$ docker-compose -f docker-compose.dev.yml --env-file .env.dev up --build -d
+$ docker-compose build --no-cache
+$ docker-compose run --rm dev
 ```
 
-### 4. Access to the Container
-
-```sh
-$ docker exec -it text-to-image-dev-1 /bin/bash
-```
-
-### 5. Prepare `order.yml`
+### 4. Prepare `order.yml`
 
 - Refer to [order.yml](./config/order.yml) for the format of the file.
 
@@ -66,7 +61,7 @@ $ docker exec -it text-to-image-dev-1 /bin/bash
 | `tags`     | The tags of the image.                                                      |
 | `title`    | The title of the image.                                                     |
 
-### 6. Run Python Script
+### 5. Run Python Script
 
 ```sh
 $ python text-to-image/main.py

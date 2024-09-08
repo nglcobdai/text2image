@@ -3,14 +3,13 @@ services:
   dev:
     build:
       context: .
-      dockerfile: ./Dockerfile.dev
+      dockerfile: ./Dockerfile
     volumes:
       - .:/root/workspace
       - /datadrive/hdd3/text-to-image:/datadrive
     env_file:
-      - .env.dev
+      - .env
     environment:
-      - ENV=dev
       - NVIDIA_VISIBLE_DEVICES=all
     runtime: nvidia
     tty: true # retain container up
