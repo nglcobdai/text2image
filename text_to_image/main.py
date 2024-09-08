@@ -11,7 +11,7 @@ def main():
 
     order = Order(**load_yaml(Path("/root/workspace/config/order.yml")))
 
-    output_dir = settings.DATADRIVE / "output" / order.category
+    output_dir = Path(settings.DATADRIVE) / "output" / order.category
     output_dir.mkdir(parents=True, exist_ok=True)
     filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
     path = output_dir / filename

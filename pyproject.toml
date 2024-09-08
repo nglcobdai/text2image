@@ -11,6 +11,7 @@ pydantic-settings = "^2.4.0"
 pytz = "^2024.1"
 diffusers = {extras = ["torch"], version = "^0.30.2"}
 transformers = "^4.44.2"
+nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", branch = "feature/nglcobdai_utils" }
 
 
 [tool.poetry.group.dev.dependencies]
