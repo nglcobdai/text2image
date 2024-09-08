@@ -21,37 +21,46 @@ class TextToImageModel:
             base_model_id (str, optional): Base model ID ("stabilityai/stable-diffusion-xl-base-1.0").
             repo_name (str, optional): Repository name ("SYZhang0805/DisBack").
             ckpt_name (str, optional): Checkpoint name ("SDXL_DisBack.bin").
+            use_gpu (bool, optional): Whether to use GPU (False).
         """
-        base_model_id = base_model_id
-        repo_name = repo_name
-        ckpt_name = ckpt_name
-        device = "cuda" if use_gpu else "cpu"
-
-        # Proper usage of from_config
-        unet_config = UNet2DConditionModel.load_config(base_model_id, subfolder="unet")
-        unet = UNet2DConditionModel.from_config(unet_config).to(device, torch.float16)
-
-        # Use weights_only=True to avoid security issues
-        unet.load_state_dict(
-            torch.load(
-                hf_hub_download(repo_name, ckpt_name),
-                map_location=device,
-                weights_only=True,
-            )
+        device = "cuda" if use_gpu and torch.cuda.is_available() else "cpu"
+        torch_dtype = (
+            torch.float16 if use_gpu and torch.cuda.is_available() else torch.float32
         )
 
-        self.pipe = DiffusionPipeline.from_pretrained(
-            base_model_id,
-            unet=unet,
-            torch_dtype=torch.float16,
-            use_safetensors=True,
-            variant="fp16",
-        ).to(device)
+        try:
+            # Load UNet configuration
+            unet_config = UNet2DConditionModel.load_config(
+                base_model_id, subfolder="unet"
+            )
+            unet = UNet2DConditionModel.from_config(unet_config).to(device, torch_dtype)
 
-        # Initialize LCMScheduler properly without unnecessary parameters
-        self.pipe.scheduler = LCMScheduler.from_config(self.pipe.scheduler.config)
+            # Load model weights
+            unet.load_state_dict(
+                torch.load(
+                    hf_hub_download(repo_name, ckpt_name),
+                    map_location=device,
+                    weights_only=True,
+                )
+            )
 
-        logger.info("TextToImageModel initialized")
+            # Initialize DiffusionPipeline
+            self.pipe = DiffusionPipeline.from_pretrained(
+                base_model_id,
+                unet=unet,
+                torch_dtype=torch_dtype,
+                use_safetensors=True,
+                variant="fp16" if use_gpu else "float32",
+            ).to(device)
+
+            # Initialize scheduler
+            self.pipe.scheduler = LCMScheduler.from_config(self.pipe.scheduler.config)
+
+            logger.info("TextToImageModel initialized on %s", device)
+
+        except Exception as e:
+            logger.error(f"Failed to initialize TextToImageModel: {e}")
+            raise
 
     def __call__(self, prompt, is_save=False, **kwargs):
         """Generate image from text prompt and save to disk

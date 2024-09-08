@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 # pyproject.toml、poetry.lock、poetry.tomlをコピーする
 COPY pyproject.toml poetry.lock poetry.toml $WORKDIR/
 
-RUN poetry install --no-root
+RUN poetry install --no-root --no-dev
 
 # Clear cache to free up space
 RUN apt-get clean \
