@@ -14,8 +14,8 @@ This is a Library to generate images from text.
 Example of generated images.
 
 |                                          |                                          |
-| ---------------------------------------- | ---------------------------------------- |
-| `A cat in a hat`                         | `The photo of Tokyo Tower`               |
+| :--------------------------------------: | :--------------------------------------: |
+|             `A cat in a hat`             |        `The photo of Tokyo Tower`        |
 | ![Generated Image](./sample/sample1.png) | ![Generated Image](./sample/sample2.png) |
 
 ## Requirements
