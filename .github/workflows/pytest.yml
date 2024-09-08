@@ -24,17 +24,17 @@ jobs:
 
       - name: Make .env file
         run: |
-          cp .env.example .env.test
+          cp .env.example .env.dev
 
       - name: Build the containers & Start the containers
         run: |
-          docker-compose -f docker-compose.test.yml --env-file .env.test up --build -d
+          docker-compose -f docker-compose.dev.yml --env-file .env.dev up --build -d
 
       - name: Test with pytest
         run: |
-          docker exec text-to-image_test_1 pytest -v
+          docker exec text-to-image_dev_1 pytest -v
 
       - name: Clean up
         if: always()
         run: |
-          docker-compose -f docker-compose.test.yml --env-file .env.test down
+          docker-compose -f docker-compose.dev.yml --env-file .env.dev down
