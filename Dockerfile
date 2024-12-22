@@ -2,7 +2,7 @@ FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04
 
 ENV LANG=C.UTF-8 \
     LANGUAGE=en_US \
-    PYTHONPATH="/root/workspace:$PYTHONPATH" \
+    PYTHONPATH="/root/workspace/src:$PYTHONPATH" \
     DEBIAN_FRONTEND=noninteractive
 
 # Pythonのインストール

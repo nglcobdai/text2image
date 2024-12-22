@@ -51,6 +51,14 @@ $ docker-compose build --no-cache
 $ docker-compose run --rm dev
 ```
 
+### 4. login to the huggingface
+
+```sh
+$ huggingface-cli login
+```
+
+You will be asked to enter your access token. You can get the access token from the [Hugging Face website](https://huggingface.co/join).
+
 ### 4. Prepare `order.yml`
 
 - Refer to [order.yml](./config/order.yml) for the format of the file.
