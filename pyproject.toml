@@ -5,6 +5,9 @@ description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
 
+[tool.poetry.include]
+"config/message.ini" = "src/config/message.ini"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 pydantic-settings = "^2.4.0"
