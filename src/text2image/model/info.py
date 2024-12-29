@@ -3,7 +3,7 @@ from typing import List
 
 import torch
 from pydantic import BaseModel, Field, PrivateAttr
-from image_creator.utils import OrderPromptIsNotExistsError, OutputPathIsNotExistsError
+from text2image.utils import OrderPromptIsNotExistsError, OutputPathIsNotExistsError
 
 
 class ModelInfo(BaseModel):

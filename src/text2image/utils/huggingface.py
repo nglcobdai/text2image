@@ -1,6 +1,6 @@
 from huggingface_hub import login
-from image_creator.utils.setup import logger, messenger
-from image_creator.utils.error import HuggingFaceValueError
+from text2image.utils.setup import logger, messenger
+from text2image.utils.error import HuggingFaceValueError
 
 
 class HuggingFace:

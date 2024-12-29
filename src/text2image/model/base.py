@@ -4,8 +4,8 @@ import numpy as np
 import torch
 from diffusers import DiffusionPipeline
 
-from image_creator.model.info import ModelInfo, Order
-from image_creator.utils import (
+from text2image.model.info import ModelInfo, Order
+from text2image.utils import (
     ImageGenerationError,
     OutputPathNotFoundError,
     InitializeModelError,
