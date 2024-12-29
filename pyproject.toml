@@ -5,7 +5,8 @@ description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
 include = [
-    "src/config/message.ini"
+    "src/config/message.ini",
+    "config/message.ini"
 ]
 
 [tool.poetry.dependencies]
