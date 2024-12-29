@@ -1,4 +1,4 @@
-# text-to-image
+# text2image
 
 This is a Library to generate images from text.
 
@@ -32,8 +32,8 @@ Example of generated images.
 ### 1. Clone Repository
 
 ```sh
-$ git clone git@github.com:nglcobdai/text-to-image.git
-$ cd text-to-image
+$ git clone git@github.com:nglcobdai/text2image.git
+$ cd text2image
 ```
 
 ### 2. Create .env file
@@ -72,5 +72,5 @@ You will be asked to enter your access token. You can get the access token from 
 ### 5. Run Python Script
 
 ```sh
-$ python text-to-image/main.py
+$ python text2image/main.py
 ```

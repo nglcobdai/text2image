@@ -6,7 +6,7 @@ from image_creator.utils import HuggingFace, settings
 
 
 def main():
-    output_dir = Path("datadrive/output/debug")
+    output_dir = Path("/datadrive/output/debug")
     output_dir.mkdir(parents=True, exist_ok=True)
     filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
 

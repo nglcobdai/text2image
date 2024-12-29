@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "text-to-image"
+name = "text2image"
 version = "0.1.3"
 description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]

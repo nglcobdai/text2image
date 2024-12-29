@@ -6,7 +6,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - .:/root/workspace
-      - /datadrive/hdd3/text-to-image:/datadrive
+      - ${DATADRIVE}:/datadrive
     env_file:
       - .env
     environment:
