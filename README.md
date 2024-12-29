@@ -25,7 +25,7 @@ Example of generated images.
   - Docker: `v26.0.2`
   - Docker Compose: `v2.22.0`
 
-- Nvidia Driver is required for CUDA `12.1`.
+- Nvidia Driver is required for CUDA `12.5`.
 
 ## Getting Started
 
@@ -38,11 +38,18 @@ $ cd text2image
 
 ### 2. Create .env file
 
-- copy .env.example to .env
+Copy .env.example to .env
 
 ```sh
 $ cp .env.example .env.dev
 ```
+
+Edit .env.dev file
+
+| Key                   | Description                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DATADRIVE             | The path to the directory where generated image save.                                                                                            |
+| HUGGINGFACE_API_TOKEN | The API token for Hugging Face.<br>This token is required to access [the FLUX.1-dev](https://huggingface.co/black-forest-labs/FLUX.1-dev) model. |
 
 ### 3. Docker Build & Run
 
@@ -51,26 +58,8 @@ $ docker-compose build --no-cache
 $ docker-compose run --rm dev
 ```
 
-### 4. login to the huggingface
+### 4. Run Python Script
 
 ```sh
-$ huggingface-cli login
-```
-
-You will be asked to enter your access token. You can get the access token from the [Hugging Face website](https://huggingface.co/join).
-
-### 4. Prepare `order.yml`
-
-- Refer to [order.yml](./config/order.yml) for the format of the file.
-
-| Key        | Description                                                                 |
-| ---------- | --------------------------------------------------------------------------- |
-| `category` | The category of the image. This is used to determine the image's directory. |
-| `tags`     | The tags of the image.                                                      |
-| `title`    | The title of the image.                                                     |
-
-### 5. Run Python Script
-
-```sh
-$ python text2image/main.py
+$ python src/__main__.py
 ```
