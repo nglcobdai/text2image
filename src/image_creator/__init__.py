@@ -14,6 +14,7 @@ from image_creator.utils import (
     OutputPathIsNotExistsError,
     OutputPathNotFoundError,
     HuggingFaceValueError,
+    HuggingFace
 )
 
 __name__ = "text2image"

@@ -1,6 +1,6 @@
 from nglcobdai_utils import (
     ConsoleHandlerInfo,
-    FileHandlerInfo,
+    RotatingFileHandlerInfo,
     Messenger,
     Settings,
     get_logger,
@@ -8,6 +8,6 @@ from nglcobdai_utils import (
 
 settings = Settings()
 ch = ConsoleHandlerInfo(log_level="INFO")
-fh = FileHandlerInfo(log_level="DEBUG", log_file="logs/app.log")
+fh = RotatingFileHandlerInfo(log_level="DEBUG", filename="/datadrive/logs/text2image.log")
 logger = get_logger(name=settings.PROJECT_NAME, ch_info=ch, fh_info=fh)
 messenger = Messenger("src/config/message.ini")
