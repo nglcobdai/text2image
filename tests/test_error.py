@@ -7,6 +7,7 @@ from image_creator import (
     OrderPromptIsNotExistsError,
     OutputPathIsNotExistsError,
     OutputPathNotFoundError,
+    HuggingFaceValueError,
 )
 
 
@@ -73,3 +74,17 @@ class TestOrderPromptIsNotExistsError:
             raise OrderPromptIsNotExistsError()
 
         assert e.value.message == OrderPromptIsNotExistsError().message
+
+
+class TestHuggingFaceValueError:
+    def test_hugging_face_value_error(self):
+        value = None
+        with pytest.raises(HuggingFaceValueError) as e:
+            raise HuggingFaceValueError(value=value)
+
+        gt = HuggingFaceValueError._MESSAGE_FORMAT.format(
+            code=HuggingFaceValueError._CODE,
+            note=HuggingFaceValueError._NOTE.format(value=value),
+        )
+
+        assert e.value.message == gt

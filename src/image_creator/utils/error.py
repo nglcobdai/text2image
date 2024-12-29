@@ -47,3 +47,11 @@ class OrderPromptIsNotExistsError(TemplateError):
     _CODE = "IMC-E0006"
 
     _NOTE = "Order prompt is not setting. Set the `prompt` in the order."
+
+
+class HuggingFaceValueError(TemplateError):
+    """Error raised when HuggingFace value is not expected"""
+
+    _CODE = "IMC-E0007"
+
+    _NOTE = "HuggingFace value is not expected: {value}. Check the value."
