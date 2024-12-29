@@ -1,14 +1,16 @@
 from datetime import datetime
 from pathlib import Path
 
-from image_creator import t2i, Order, FluxInfo
-from image_creator.utils import settings
+from image_creator import FluxInfo, Order, t2i
+from image_creator.utils import HuggingFace, settings
 
 
 def main():
-    output_dir = Path(settings.DATADRIVE) / "output" / "debug"
+    output_dir = Path("datadrive/output/debug")
     output_dir.mkdir(parents=True, exist_ok=True)
     filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
+
+    HuggingFace.login(token=settings.HUGGINGFACE_API_TOKEN)
 
     order = Order(
         prompt="A beautiful sunset",
