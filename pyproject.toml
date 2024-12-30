@@ -5,7 +5,8 @@ description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
 packages = [
-    { include = "src" },
+    { include = "text2image" from="src" },
+    { include = "config" from="src" },
 ]
 
 [tool.poetry.dependencies]
