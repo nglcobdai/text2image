@@ -21,7 +21,11 @@ class Flux(Base):
         Args:
             info (FluxInfo): FluxInfo object
         """
-        textencoder_config = BitsAndBytesConfig(load_in_4bit=info.load_in_4bit)
+        textencoder_config = BitsAndBytesConfig(
+            load_in_4bit=info.load_in_4bit,
+            bnb_4bit_use_double_quant=True,  # ダブル量子化を有効化
+            bnb_4bit_quant_type="nf4",  # メモリ効率の高いNF4量子化
+        )
         text_encoder_2 = T5EncoderModel.from_pretrained(
             info.base_model_id,
             subfolder="text_encoder_2",
