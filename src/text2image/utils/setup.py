@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from nglcobdai_utils import (
     ConsoleHandlerInfo,
-    RotatingFileHandlerInfo,
     Messenger,
+    RotatingFileHandlerInfo,
     Settings,
     get_logger,
 )
@@ -12,4 +14,4 @@ fh = RotatingFileHandlerInfo(
     log_level="DEBUG", filename="/datadrive/logs/text2image.log"
 )
 logger = get_logger(name=settings.PROJECT_NAME, ch_info=ch, fh_info=fh)
-messenger = Messenger("config/message.ini")
+messenger = Messenger(Path(__file__).resolve().parent.parent / "config/message.ini")

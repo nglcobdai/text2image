@@ -4,9 +4,6 @@ version = "0.1.3"
 description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
-packages = [
-    { include = "text2image"}
-]
 
 [tool.poetry.dependencies]
 python = "^3.10"
