@@ -1,8 +1,8 @@
 import numpy as np
 from PIL import Image
 
-from image_creator import FluxInfo, Order, t2i
-from image_creator.utils import HuggingFace, settings
+from text2image import FluxInfo, Order, t2i
+from text2image.utils import HuggingFace, settings
 from pathlib import Path
 
 

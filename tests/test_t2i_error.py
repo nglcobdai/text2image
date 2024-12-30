@@ -1,6 +1,6 @@
 import pytest
 
-from image_creator import (
+from text2image import (
     FluxInfo,
     InitializeModelError,
     Order,
@@ -9,7 +9,7 @@ from image_creator import (
     OutputPathNotFoundError,
     t2i,
 )
-from image_creator.utils import settings
+from text2image.utils import settings
 
 
 class TestOrderPromptIsNotExistsError:
