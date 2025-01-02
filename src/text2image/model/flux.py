@@ -30,12 +30,12 @@ class Flux(Base):
             info.base_model_id,
             subfolder="text_encoder_2",
             quantization_config=textencoder_config,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
         )
 
         self.pipe = FluxPipeline.from_pretrained(
             info.base_model_id,
             text_encoder_2=text_encoder_2,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
             device_map="balanced",
         )
