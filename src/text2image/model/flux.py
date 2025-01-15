@@ -2,8 +2,8 @@ import torch
 from diffusers import FluxPipeline
 from transformers import BitsAndBytesConfig, T5EncoderModel
 
-from image_creator.model.base import Base
-from image_creator.model.info import FluxInfo
+from text2image.model.base import Base
+from text2image.model.info import FluxInfo
 
 
 class Flux(Base):
@@ -21,17 +21,21 @@ class Flux(Base):
         Args:
             info (FluxInfo): FluxInfo object
         """
-        textencoder_config = BitsAndBytesConfig(load_in_4bit=info.load_in_4bit)
+        textencoder_config = BitsAndBytesConfig(
+            load_in_4bit=info.load_in_4bit,
+            bnb_4bit_use_double_quant=True,  # ダブル量子化を有効化
+            bnb_4bit_quant_type="nf4",  # メモリ効率の高いNF4量子化
+        )
         text_encoder_2 = T5EncoderModel.from_pretrained(
             info.base_model_id,
             subfolder="text_encoder_2",
             quantization_config=textencoder_config,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
         )
 
         self.pipe = FluxPipeline.from_pretrained(
             info.base_model_id,
             text_encoder_2=text_encoder_2,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
             device_map="balanced",
         )

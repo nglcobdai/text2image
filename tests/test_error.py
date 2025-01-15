@@ -1,6 +1,6 @@
 import pytest
 
-from image_creator import (
+from text2image import (
     ImageGenerationError,
     InitializeModelError,
     ModelInfoUnexpectedError,

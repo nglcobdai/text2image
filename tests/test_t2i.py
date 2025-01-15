@@ -1,6 +1,6 @@
 import pytest
 
-from image_creator import ModelInfoUnexpectedError, t2i
+from text2image import ModelInfoUnexpectedError, t2i
 
 
 class TestModelInfoUnexpectedError:

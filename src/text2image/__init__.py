@@ -1,4 +1,4 @@
-from image_creator.model import (
+from text2image.model import (
     Base,
     Flux,
     FluxInfo,
@@ -6,7 +6,7 @@ from image_creator.model import (
     Order,
     t2i,
 )
-from image_creator.utils import (
+from text2image.utils import (
     ImageGenerationError,
     InitializeModelError,
     ModelInfoUnexpectedError,
@@ -14,7 +14,7 @@ from image_creator.utils import (
     OutputPathIsNotExistsError,
     OutputPathNotFoundError,
     HuggingFaceValueError,
-    HuggingFace
+    HuggingFace,
 )
 
 __name__ = "text2image"

@@ -1,8 +1,8 @@
 from datetime import datetime
 from pathlib import Path
 
-from image_creator import FluxInfo, Order, t2i
-from image_creator.utils import HuggingFace, settings
+from text2image import FluxInfo, Order, t2i
+from text2image.utils import HuggingFace, settings
 
 
 def main():

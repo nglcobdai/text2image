@@ -1,6 +1,6 @@
 import pytest
 
-from image_creator.utils import HuggingFace, HuggingFaceValueError, settings
+from text2image.utils import HuggingFace, HuggingFaceValueError, settings
 
 
 class TestHuggingFaceLogin:
