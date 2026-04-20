@@ -18,6 +18,7 @@ sentencepiece = "^0.2.0"
 optimum-quanto = "^0.2.6"
 pynvml = "^11.5.3"
 huggingface-hub = "^0.27.0"
+pillow = ">=12.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
