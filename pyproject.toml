@@ -6,20 +6,20 @@ authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.15"
 pydantic-settings = "^2.4.0"
 pytz = "^2024.1"
 nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", rev = "5cec1b107453f33b5ad31ab33108e2300f7d0f25"}
 diffusers = {extras = ["torch"], version = "^0.32.0"}
-transformers = "^4.50.0"
-bitsandbytes = "^0.44.1"
+transformers = "^4.53.0"
+bitsandbytes = "^0.45.5"
 protobuf = "^5.29.6"
 sentencepiece = "^0.2.1"
 optimum-quanto = "^0.2.6"
 pynvml = "^11.5.3"
-huggingface-hub = "^0.27.0"
+huggingface-hub = ">=0.30.0,<1.0"
 pillow = ">=12.2.0"
-torch = ">=2.6.0"
+torch = ">=2.8.0"
 
 
 [tool.poetry.group.dev.dependencies]
