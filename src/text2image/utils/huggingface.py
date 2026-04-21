@@ -12,6 +12,8 @@ class HuggingFace:
             token (str): Hugging Face API token
         """
         logger.info(messenger("INFO", "IMC-I0050"))
+        if not token:
+            raise HuggingFaceValueError(error=ValueError("token is empty"))
         try:
             login(token=token)
         except ValueError as e:
