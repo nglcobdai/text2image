@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "text2image"
-version = "0.1.7"
+version = "0.1.8"
 description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ pydantic-settings = "^2.14.2"
 pytz = "^2024.1"
 nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", rev = "5cec1b107453f33b5ad31ab33108e2300f7d0f25"}
 diffusers = {extras = ["torch"], version = "^0.38.0"}
-transformers = "^5.0.0"
+transformers = ">=5.10.0,<6"
 bitsandbytes = "^0.46.1"
 protobuf = "^5.29.6"
 sentencepiece = "^0.2.1"
@@ -32,7 +32,7 @@ isort = "^5.12.0"
 ipython = "^8.15.0"
 ipykernel = "^6.25.2"
 pytest = "^9.0.3"
-tornado = ">=6.5.7"
+tornado = ">=6.5.8"
 
 [[tool.poetry.source]]
 name = "pytorch-cu126"
