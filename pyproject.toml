@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "text2image"
-version = "0.1.9"
+version = "0.1.10"
 description = "Generate images from text"
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
