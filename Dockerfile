@@ -19,7 +19,7 @@ WORKDIR /root/workspace
 
 # Poetryのインストールと依存関係のインストール
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --upgrade "wheel>=0.38.1" poetry
+    && pip install --upgrade "wheel>=0.38.1" poetry "virtualenv>=21.7.13"
 
 # pyproject.toml、poetry.lock、poetry.tomlをコピーする
 COPY pyproject.toml poetry.lock poetry.toml $WORKDIR/
