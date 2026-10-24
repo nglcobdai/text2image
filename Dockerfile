@@ -1,14 +1,21 @@
 FROM nvidia/cuda:12.5.1-cudnn-runtime-ubuntu22.04
 
+COPY --from=ghcr.io/astral-sh/uv:0.13.5 /uv /usr/local/bin/uv
+
 ENV LANG=C.UTF-8 \
     LANGUAGE=en_US \
     PYTHONPATH="/root/workspace/src:$PYTHONPATH" \
     DEBIAN_FRONTEND=noninteractive
 
 # Pythonのインストール
-RUN apt-get update && apt-get install -y python3.10 python3-pip \
-    && ln -s /usr/bin/python3.10 /usr/bin/python \
+ENV UV_PYTHON_INSTALL_DIR=/opt/python
+RUN apt-get update && apt-get install -y ca-certificates \
+    && uv python install 3.11 \
+    && uv venv --python 3.11 --seed /opt/venv \
     && rm -rf /var/lib/apt/lists/*
+
+ENV VIRTUAL_ENV=/opt/venv \
+    PATH="/opt/venv/bin:$PATH"
 
 # システム依存のライブラリをインストール
 RUN apt-get update && apt-get install -y \
